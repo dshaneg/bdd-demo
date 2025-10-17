@@ -8,7 +8,6 @@ Feature: Bank Account Management
     When I deposit $50
     Then my account balance should be $150
 
-  @ignore
   Scenario: Withraw money from account with sufficient funds
     Given I have a bank account with a balance of $100
     When I withdraw $30

@@ -13,4 +13,9 @@ public class BankAccount
     {
         Balance += amount;
     }
+
+    public void Withdraw(decimal amount)
+    {
+        Balance -= amount;
+    }
 }

@@ -168,19 +168,18 @@ namespace BDDDemo.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="Withraw money from account with sufficient funds", Skip="Ignored")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Withraw money from account with sufficient funds")]
         [global::Xunit.TraitAttribute("FeatureTitle", "Bank Account Management")]
         [global::Xunit.TraitAttribute("Description", "Withraw money from account with sufficient funds")]
         public async global::System.Threading.Tasks.Task WithrawMoneyFromAccountWithSufficientFunds()
         {
-            string[] tagsOfScenario = new string[] {
-                    "ignore"};
+            string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "1";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Withraw money from account with sufficient funds", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 12
+#line 11
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -190,13 +189,13 @@ namespace BDDDemo.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 13
+#line 12
     await testRunner.GivenAsync("I have a bank account with a balance of $100", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 14
+#line 13
     await testRunner.WhenAsync("I withdraw $30", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 14
     await testRunner.ThenAsync("my account balance should be $70", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -215,7 +214,7 @@ namespace BDDDemo.Tests.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Cannot withdraw more than account balance", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 18
+#line 17
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -225,16 +224,16 @@ namespace BDDDemo.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 19
+#line 18
     await testRunner.GivenAsync("I have a bank account with a balance of $50", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 19
     await testRunner.WhenAsync("I attempt to withdraw $100", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 20
     await testRunner.ThenAsync("I should see an error \"Insufficient funds\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 22
+#line 21
     await testRunner.AndAsync("my account balance should remain $50", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }

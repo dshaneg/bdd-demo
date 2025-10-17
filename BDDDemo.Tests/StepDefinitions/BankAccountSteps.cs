@@ -21,6 +21,12 @@ public class BankAccountSteps
         _account?.Deposit(amount);
     }
 
+    [When(@"I withdraw \$(.*)")]
+    public void WhenIWithdraw(decimal amount)
+    {
+        _account?.Withdraw(amount);
+    }
+
     [Then(@"my account balance should be \$(.*)")]
     public void ThenMyAccountBalanceShouldBe(decimal expectedBalance)
     {
