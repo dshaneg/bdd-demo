@@ -14,11 +14,6 @@ public class BankAccount
         Balance += amount;
     }
 
-    public void Withdraw(decimal amount)
-    {
-        Balance -= amount;
-    }
-
     public (bool Success, string? ErrorMessage) TryWithdraw(decimal amount)
     {
         if (amount > Balance)
