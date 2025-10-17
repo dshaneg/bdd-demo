@@ -33,6 +33,34 @@ public class BankAccountSteps
         (_withdrawSuccess, _withdrawMessage) = _account.TryWithdraw(amount);
     }
 
+    [When(@"I perform the following transactions:")]
+    public void WhenIPerformTheFollowingTransactions(Table table)
+    {
+        if (_account == null)
+        {
+            throw new InvalidOperationException("Bank account has not been initialized.");
+        }
+
+        foreach (var row in table.Rows)
+        {
+            var type = row["Type"];
+            var amount = decimal.Parse(row["Amount"]);
+
+            switch(row["Type"].ToLower())
+            {
+                case "deposit":
+                    _account.Deposit(amount);
+                    break;
+                case "withdraw":
+                    // the test currently does not care about the result of each withdrawal
+                    _account.TryWithdraw(amount);
+                    break;
+                default:
+                    throw new InvalidOperationException($"Unknown transaction type: {type}");
+            }
+        }
+    }
+
     [Then(@"my account balance should be \$(.*)")]
     public void ThenMyAccountBalanceShouldBe(decimal expectedBalance)
     {

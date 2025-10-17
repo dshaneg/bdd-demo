@@ -106,7 +106,7 @@ namespace BDDDemo.Tests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/BankAccount.feature.ndjson", 5);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/BankAccount.feature.ndjson", 6);
         }
         
         async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
@@ -234,6 +234,52 @@ namespace BDDDemo.Tests.Features
 #line hidden
 #line 20
     await testRunner.AndAsync("my account balance should remain $50", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="Process multiple transactions")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Bank Account Management")]
+        [global::Xunit.TraitAttribute("Description", "Process multiple transactions")]
+        public async global::System.Threading.Tasks.Task ProcessMultipleTransactions()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "3";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Process multiple transactions", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 22
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 23
+    await testRunner.GivenAsync("I have a bank account with a balance of $1000", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
+                            "Type",
+                            "Amount"});
+                table1.AddRow(new string[] {
+                            "Deposit",
+                            "200"});
+                table1.AddRow(new string[] {
+                            "Withdraw",
+                            "150"});
+                table1.AddRow(new string[] {
+                            "Deposit",
+                            "75"});
+#line 24
+    await testRunner.WhenAsync("I perform the following transactions:", ((string)(null)), table1, "When ");
+#line hidden
+#line 29
+    await testRunner.ThenAsync("my account balance should be $1125", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

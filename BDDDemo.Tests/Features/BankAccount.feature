@@ -18,3 +18,12 @@ Feature: Bank Account Management
     When I attempt to withdraw $100
     Then I should see an error "Insufficient funds"
     And my account balance should remain $50
+
+  Scenario: Process multiple transactions
+    Given I have a bank account with a balance of $1000
+    When I perform the following transactions:
+      | Type     | Amount |
+      | Deposit  | 200    |
+      | Withdraw | 150    |
+      | Deposit  | 75     |
+    Then my account balance should be $1125
