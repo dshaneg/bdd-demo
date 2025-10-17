@@ -14,4 +14,6 @@ the application being built from the ground up using BDD (and TDD!)
 - `withdraw-sufficient` - Implement step definitions and model implementation for withdrawing money (when you have enough)
 - `withdraw-insufficient` - Implement step definitions and model implementation for withdrawing money (when you don't have enough)
 - `data-table` - Implement a scenario that includes a step with a data table
-- `context-custom` - Split step functions into two classes and use a custom context object to communicate between them
+- `context-scenario` - Split step functions into two classes and use the built-in `ScenarioContext` object to communicate between them
+- `context-custom` - Reimplement the context example using a custom context object which doesn't require magic strings to index the context's properties
+- `hooks` - Demonstrate hooks for setup and teardown

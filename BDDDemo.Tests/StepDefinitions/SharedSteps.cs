@@ -1,4 +1,6 @@
 using BDDDemo.Library.Models;
+using BDDDemo.Tests.Contexts;
+
 using Reqnroll;
 
 namespace BDDDemo.Tests.StepDefinitions;

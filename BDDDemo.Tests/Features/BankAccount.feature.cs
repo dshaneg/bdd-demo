@@ -242,15 +242,17 @@ namespace BDDDemo.Tests.Features
         [global::Xunit.SkippableFactAttribute(DisplayName="Process multiple transactions")]
         [global::Xunit.TraitAttribute("FeatureTitle", "Bank Account Management")]
         [global::Xunit.TraitAttribute("Description", "Process multiple transactions")]
+        [global::Xunit.TraitAttribute("Category", "slow")]
         public async global::System.Threading.Tasks.Task ProcessMultipleTransactions()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "slow"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "3";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Process multiple transactions", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 22
+#line 23
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -260,7 +262,7 @@ namespace BDDDemo.Tests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 23
+#line 24
     await testRunner.GivenAsync("I have a bank account with a balance of $1000", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
                 global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
@@ -275,10 +277,10 @@ namespace BDDDemo.Tests.Features
                 table1.AddRow(new string[] {
                             "Deposit",
                             "75"});
-#line 24
+#line 25
     await testRunner.WhenAsync("I perform the following transactions:", ((string)(null)), table1, "When ");
 #line hidden
-#line 29
+#line 30
     await testRunner.ThenAsync("my account balance should be $1125", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }

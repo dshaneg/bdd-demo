@@ -19,6 +19,7 @@ Feature: Bank Account Management
     Then I should see an error "Insufficient funds"
     And my account balance should remain $50
 
+  @slow
   Scenario: Process multiple transactions
     Given I have a bank account with a balance of $1000
     When I perform the following transactions:
