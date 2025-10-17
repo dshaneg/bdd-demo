@@ -6,16 +6,16 @@ namespace BDDDemo.Tests.StepDefinitions;
 [Binding]
 public class SharedSteps
 {
-    private readonly BankAccountContext _accountContext;
+    private readonly ScenarioContext _scenarioContext;
 
-    public SharedSteps(BankAccountContext context)
+    public SharedSteps(ScenarioContext context)
     {
-        _accountContext = context;
+        _scenarioContext = context;
     }
 
     [Given(@"I have a bank account with a balance of \$(.*)")]
     public void GivenIHaveABankAccountWithABalanceOf(decimal initialBalance)
     {
-        _accountContext.Account = new BankAccount(initialBalance);
+        _scenarioContext.Set(new BankAccount(initialBalance), "BankAccount");
     }
 }

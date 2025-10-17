@@ -1,3 +1,4 @@
+using BDDDemo.Library.Models;
 using Reqnroll;
 
 namespace BDDDemo.Tests.StepDefinitions;
@@ -5,39 +6,36 @@ namespace BDDDemo.Tests.StepDefinitions;
 [Binding]
 public class BankAccountSteps
 {
-    private BankAccountContext _accountContext;
+    private ScenarioContext _scenarioContext;
     private bool _withdrawSuccess;
     private string? _withdrawMessage;
 
-    public BankAccountSteps(BankAccountContext context)
+    public BankAccountSteps(ScenarioContext context)
     {
-        _accountContext = context;
+        _scenarioContext = context;
     }
 
     [When(@"I deposit \$(.*)")]
     public void WhenIDeposit(decimal amount)
     {
-        _accountContext.Account?.Deposit(amount);
+        var account = _scenarioContext.Get<BankAccount>("BankAccount");
+        account?.Deposit(amount);
     }
 
     [When(@"I (?:attempt to )?withdraw \$(.*)")]
     public void WhenIAttemptToWithdraw(decimal amount)
     {
-        if (_accountContext.Account == null)
-        {
-            throw new InvalidOperationException("Bank account has not been initialized.");
-        }
+        var account = _scenarioContext.Get<BankAccount>("BankAccount")
+            ?? throw new InvalidOperationException("Bank account has not been initialized.");
 
-        (_withdrawSuccess, _withdrawMessage) = _accountContext.Account.TryWithdraw(amount);
+        (_withdrawSuccess, _withdrawMessage) = account.TryWithdraw(amount);
     }
 
     [When(@"I perform the following transactions:")]
     public void WhenIPerformTheFollowingTransactions(Table table)
     {
-        if (_accountContext.Account == null)
-        {
-            throw new InvalidOperationException("Bank account has not been initialized.");
-        }
+        var account = _scenarioContext.Get<BankAccount>("BankAccount")
+            ?? throw new InvalidOperationException("Bank account has not been initialized.");
 
         foreach (var row in table.Rows)
         {
@@ -47,11 +45,11 @@ public class BankAccountSteps
             switch(row["Type"].ToLower())
             {
                 case "deposit":
-                    _accountContext.Account.Deposit(amount);
+                    account.Deposit(amount);
                     break;
                 case "withdraw":
                     // the test currently does not care about the result of each withdrawal
-                    _accountContext.Account.TryWithdraw(amount);
+                    account.TryWithdraw(amount);
                     break;
                 default:
                     throw new InvalidOperationException($"Unknown transaction type: {type}");
@@ -62,21 +60,27 @@ public class BankAccountSteps
     [Then(@"my account balance should be \$(.*)")]
     public void ThenMyAccountBalanceShouldBe(decimal expectedBalance)
     {
-        Assert.NotNull(_accountContext.Account);
-        Assert.Equal(expectedBalance, _accountContext.Account.Balance);
+        var account = _scenarioContext.Get<BankAccount>("BankAccount");
+
+        Assert.NotNull(account);
+        Assert.Equal(expectedBalance, account.Balance);
     }
 
     [Then(@"my account balance should remain \$(.*)")]
     public void ThenMyAccountBalanceShouldRemain(decimal expectedBalance)
     {
-        Assert.NotNull(_accountContext.Account);
-        Assert.Equal(expectedBalance, _accountContext.Account.Balance);
+        var account = _scenarioContext.Get<BankAccount>("BankAccount");
+
+        Assert.NotNull(account);
+        Assert.Equal(expectedBalance, account.Balance);
     }
 
     [Then(@"I should see an error ""(.*)""")]
     public void ThenIShouldSeeAnError(string expectedError)
     {
-        Assert.NotNull(_accountContext.Account);
+        var account = _scenarioContext.Get<BankAccount>("BankAccount");
+
+        Assert.NotNull(account);
         Assert.False(_withdrawSuccess);
         Assert.Equal(expectedError, _withdrawMessage);
     }
