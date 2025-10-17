@@ -18,4 +18,15 @@ public class BankAccount
     {
         Balance -= amount;
     }
+
+    public (bool Success, string? ErrorMessage) TryWithdraw(decimal amount)
+    {
+        if (amount > Balance)
+        {
+            return (false, "Insufficient funds");
+        }
+
+        Balance -= amount;
+        return (true, null);
+    }
 }
